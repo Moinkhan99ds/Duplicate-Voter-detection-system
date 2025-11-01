@@ -2,10 +2,11 @@ from flask import Flask, request, render_template
 import numpy as np
 from tensorflow.keras.models import load_model
 from PIL import Image
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
-model = load_model("model.h5")  # Your trained model file
+model = load_model(os.path.join(os.getcwd(), "model.h5"))
 
 @app.route('/')
 def home():
